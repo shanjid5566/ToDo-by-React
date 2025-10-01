@@ -9,7 +9,7 @@ function DemoPreview() {
         </h2>
 
         {/* Demo Card */}
-        <div className=" dark:bg-black border border-gray-200  rounded-xl shadow-lg p-6 w-sm md:w-lg lg:w-2xl mx-auto">
+        <div className=" dark:bg-black border border-gray-200  rounded-xl shadow-lg p-6 w-sm md:w-lg lg:w-3xl mx-auto">
           <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
             Today’s Tasks
           </h3>
