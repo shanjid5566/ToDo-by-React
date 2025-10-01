@@ -1,5 +1,6 @@
 import Features from "../components/Features";
 import Hero from "../components/Hero";
+import HowItWorks from "../components/HowItWorks";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
         <Navbar></Navbar>
         <Hero></Hero>
         <Features></Features>
+        <HowItWorks></HowItWorks>
 
     </div>
   );
