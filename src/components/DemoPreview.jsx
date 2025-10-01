@@ -3,13 +3,13 @@ import React from "react";
 function DemoPreview() {
   return (
     <section className="py-4 lg:py-16 bg-gray-50 dark:bg-black">
-      <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-12  text-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-12  text-center ">
         <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
           App Demo Preview
         </h2>
 
         {/* Demo Card */}
-        <div className=" dark:bg-black border border-gray-200  rounded-xl shadow-lg p-6 w-sm md:w-lg lg:w-3xl mx-auto">
+        <div className=" dark:bg-black border border-gray-200  rounded-xl shadow-lg p-6 w-72 md:w-lg lg:w-3xl mx-auto">
           <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
             Today’s Tasks
           </h3>
