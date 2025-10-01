@@ -1,3 +1,4 @@
+import DemoPreview from "../components/DemoPreview";
 import Features from "../components/Features";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
@@ -10,6 +11,7 @@ const Home = () => {
         <Hero></Hero>
         <Features></Features>
         <HowItWorks></HowItWorks>
+        <DemoPreview></DemoPreview>
 
     </div>
   );
