@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme{
+
+    --color-light-white : #FFFDED;
+    --color-secondary:#4F4789;
+    --color-button : #FFB17A;
+    --color-btn-hover : #FCE762;
+    --color-dark: black;
+}
