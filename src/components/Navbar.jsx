@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import AuthContext from "../services/AuthContext";
-import { useContext } from "react";
+import {  useContext } from "react";
 import { GoSun } from "react-icons/go";
 import { FaRegMoon } from "react-icons/fa";
 import ThemeContext from "../services/ThemeContext";
 
 const Navbar = () => {
   const { dark, setDark } = useContext(ThemeContext);
+  const {users} = useContext(AuthContext)
+  console.log(users)
   console.log(dark);
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-12">
@@ -24,11 +26,17 @@ const Navbar = () => {
           >
             {dark ? <GoSun></GoSun> : <FaRegMoon></FaRegMoon>}
           </button>
-          <Link to={"/login"}>
+          {
+            users ?<Link to={"/dashboard"}>
+            <button className="bg-button dark:bg-light-white  px-2 md:px-4 py-1 md:py-2 rounded-lg font-bold hover:bg-btn-hover transition duration-150 ease-in-out cursor-pointer">
+              Dashboard
+            </button>
+          </Link> :<Link to={"/login"}>
             <button className="bg-button dark:bg-light-white  px-2 md:px-4 py-1 md:py-2 rounded-lg font-bold hover:bg-btn-hover transition duration-150 ease-in-out cursor-pointer">
               Login
             </button>
           </Link>
+          }
         </div>
       </div>
     </div>
