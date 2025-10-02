@@ -27,7 +27,7 @@ const Navbar = () => {
             {dark ? <GoSun></GoSun> : <FaRegMoon></FaRegMoon>}
           </button>
           {
-            users ?<Link to={"/dashboard"}>
+            users ?<Link to={"/dashboard/mytask"}>
             <button className="bg-button dark:bg-light-white  px-2 md:px-4 py-1 md:py-2 rounded-lg font-bold hover:bg-btn-hover transition duration-150 ease-in-out cursor-pointer">
               Dashboard
             </button>

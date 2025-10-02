@@ -34,7 +34,7 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         setUsers(user);
-        navigate("/dashboard");
+        navigate("/dashboard/mytask");
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +49,7 @@ const Login = () => {
         // The signed-in user info.
         const user = result.user;
         setUsers(user);
-        navigate("/dashboard");
+        navigate("/dashboard/mytask");
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       })

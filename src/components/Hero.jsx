@@ -17,7 +17,7 @@ const Hero = () => {
         <div className="flex justify-center items-center gap-3 md:gap-8 mt-4">
           {user ? (
             <>
-              <Link to={"/dashboard"}>
+              <Link to={"/dashboard/mytask"}>
                 <button className="bg-button dark:bg-light-white dark:text-black  px-2 md:px-4 py-1 md:py-2 rounded-lg font-bold hover:bg-btn-hover transition duration-150 ease-in-out cursor-pointer">
                   DashBoard
                 </button>
