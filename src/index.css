@@ -12,3 +12,8 @@
     --color-btn-hover : #FCE762;
     --color-dark: black;
 }
+@layer base{
+    .active{
+        background: green;
+    }
+}
