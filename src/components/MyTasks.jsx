@@ -7,10 +7,12 @@ import axios from "axios";
 export default function MyTasks() {
   const [isOpen, setIsOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [status, setStatus] = useState("");
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
   console.log(status);
 
-  // Fetch tasks from DB
+  // Fetch all tasks from DB
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -23,6 +25,23 @@ export default function MyTasks() {
     };
     fetchTasks();
   }, []);
+
+  // fetch Completed tasks from bd
+  useEffect(() => {
+    const fetchCompletedTasks = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/todos/completed"
+        );
+        // console.log("Tasks from API:", response.data);
+
+        setCompletedTasks(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchCompletedTasks();
+  }, [completedTasks]);
 
   // Add new task
   const handleSubmit = async (e) => {
@@ -58,26 +77,32 @@ export default function MyTasks() {
       console.error(err);
     }
   };
-  const handleStatus = async (e, taskId) => {
-    const newStatus = e.target.value; // radio এর value
-    try {
-      // Update DB
-      await axios.patch(`http://localhost:4000/todos/${taskId}`, {
-        status: newStatus,
-      });
+  useEffect(() => {
+    if (!selectedTaskId) return;
 
-      // Update local state
-      setTasks((prev) =>
-        prev.map((task) =>
-          task._id === taskId ? { ...task, status: newStatus } : task
-        )
-      );
+    const updateStatus = async () => {
+      try {
+        await axios.patch(`http://localhost:4000/todos/${selectedTaskId}`, {
+          status,
+        });
 
-      // Optionally update selected radio state
-      setStatus(newStatus);
-    } catch (err) {
-      console.error("Failed to update status:", err);
-    }
+        // Update local tasks state
+        setTasks((prev) =>
+          prev.map((task) =>
+            task._id === selectedTaskId ? { ...task, status } : task
+          )
+        );
+      } catch (err) {
+        console.error("Failed to update status:", err);
+      }
+    };
+
+    updateStatus();
+  }, [status, selectedTaskId]); // runs whenever status or task changes
+
+  const handleStatusChange = (e, taskId) => {
+    setSelectedTaskId(taskId);
+    setStatus(e.target.value);
   };
   return (
     <div className="bg-gray-50 p-4 md:p-8">
@@ -115,7 +140,7 @@ export default function MyTasks() {
                       name={`status-${task._id}`}
                       value="Completed"
                       checked={task.status === "Completed"}
-                      onChange={(e) => handleStatus(e, task._id)}
+                      onChange={(e) => handleStatusChange(e, task._id)}
                     />
                   </div>
                   <div className="space-x-2 flex items-center">
@@ -125,7 +150,7 @@ export default function MyTasks() {
                       name={`status-${task._id}`}
                       value="In process"
                       checked={task.status === "In process"}
-                      onChange={(e) => handleStatus(e, task._id)}
+                      onChange={(e) => handleStatusChange(e, task._id)}
                     />
                   </div>
                 </div>
@@ -179,7 +204,29 @@ export default function MyTasks() {
           <div className="bg-white rounded-xl shadow p-6">
             <h3 className="font-semibold text-gray-800 mb-4">Completed Task</h3>
             <div className="flex flex-col gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 flex gap-4 items-start">
+              {completedTasks.map((completedTask, idx) => (
+                <div
+                  key={idx}
+                  className="bg-gray-50 rounded-lg p-4 flex gap-4 items-start"
+                >
+                  <div className="text-green-500 mt-1">
+                    <BsCheckCircle />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">{completedTask.title}</h4>
+                    <p className="text-sm text-gray-600">
+                      {completedTask.description}
+                    </p>
+                    <p className="text-xs text-green-600 mt-1">
+                      {completedTask.priority}
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      Task Added : {completedTask.createdAt}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              {/* <div className="bg-gray-50 rounded-lg p-4 flex gap-4 items-start">
                 <div className="text-green-500 mt-1">
                   <BsCheckCircle />
                 </div>
@@ -193,7 +240,7 @@ export default function MyTasks() {
                   </p>
                   <p className="text-xs text-gray-400">Completed 2 days ago.</p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

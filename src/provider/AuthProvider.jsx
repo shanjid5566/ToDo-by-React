@@ -11,7 +11,6 @@ import {
 
 const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  console.log(users);
 
   // Crate user by email and password
 
@@ -32,7 +31,6 @@ const AuthProvider = ({ children }) => {
   // Auth observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser)
       setUsers(currentUser);
     });
 
