@@ -4,11 +4,11 @@ import { GoogleAuthProvider } from "firebase/auth";
 import Main from "../layout/Main";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import DashBoardMain from "../components/DashBoardMain";
 import MyTasks from "../components/MyTasks";
 import MyProfile from "../components/MyProfile";
-import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -27,10 +27,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/",
-    element: <Main />,
   },
   {
     path: "/register",
