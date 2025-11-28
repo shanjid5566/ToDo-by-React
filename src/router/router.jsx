@@ -9,7 +9,6 @@ import Dashboard from "../pages/Dashboard";
 import DashBoardMain from "../components/DashBoardMain";
 import MyTasks from "../components/MyTasks";
 import MyProfile from "../components/MyProfile";
-import PropertyDetailsPage from "../pages/PropertyDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
-  {
-    path : "/PropertyDetailsPage",
-    element : <PropertyDetailsPage></PropertyDetailsPage>
-  }
 ]);
 
 export default router;
